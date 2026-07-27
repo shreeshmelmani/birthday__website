@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Birthday Surprise</title>
+
+<style>
+
+body{
+margin:0;
+font-family:'Segoe UI',sans-serif;
+background:linear-gradient(135deg,#fdfbfb,#ebedee);
+text-align:center;
+}
+
+/* pages */
+
+.page{
+display:none;
+padding:80px 20px;
+}
+
+.active{
+display:block;
+}
+
+h1{
+font-size:50px;
+color:#ff4da6;
+}
+
+h2{
+color:#ff4da6;
+}
+
+button{
+padding:12px 25px;
+border:none;
+background:#ff4da6;
+color:white;
+border-radius:8px;
+font-size:16px;
+cursor:pointer;
+margin:10px;
+}
+
+button:disabled{
+background:gray;
+cursor:not-allowed;
+}
+
+/* countdown */
+
+#countdown{
+font-size:28px;
+margin-top:20px;
+font-weight:bold;
+}
+
+/* gallery */
+
+.gallery img{
+width:250px;
+border-radius:15px;
+margin:10px;
+}
+
+/* letter */
+
+.letter{
+max-width:600px;
+margin:auto;
+background:#fffdf7;
+padding:40px;
+border-radius:10px;
+box-shadow:0 10px 30px rgba(0,0,0,0.1);
+line-height:1.8;
+text-align:left;
+}
+
+/* chat */
+
+.chatbox{
+max-width:400px;
+margin:auto;
+background:white;
+border-radius:15px;
+padding:20px;
+box-shadow:0 10px 20px rgba(0,0,0,0.1);
+}
+
+.msg{
+padding:10px 15px;
+border-radius:20px;
+margin:10px;
+max-width:70%;
+}
+
+.left{
+background:#f1f1f1;
+text-align:left;
+}
+
+.right{
+background:#ff4da6;
+color:white;
+margin-left:auto;
+}
+
+/* puzzle */
+
+#puzzle{
+width:300px;
+height:300px;
+margin:auto;
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:2px;
+}
+
+.piece{
+width:100px;
+height:100px;
+background-size:300px 300px;
+cursor:pointer;
+border:1px solid white;
+}
+
+/* confetti */
+
+.confetti{
+position:fixed;
+width:10px;
+height:10px;
+top:-10px;
+animation:fall linear infinite;
+}
+
+@keyframes fall{
+0%{transform:translateY(-10px) rotate(0deg);}
+100%{transform:translateY(100vh) rotate(360deg);}
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- START PAGE -->
+
+<div class="page active" id="home">
+
+<h1 id="title">A Special Day Is Coming 🎂</h1>
+
+<div id="countdown"></div>
+
+<br>
+
+<button id="enterBtn" onclick="openPage('menu')" disabled>
+Come Back On Your Birthday 🎁
+</button>
+
+</div>
+
+
+<!-- MENU -->
+
+<div class="page" id="menu">
+
+<h2>Choose Your Surprise</h2>
+
+<button onclick="openPage('images')">Images</button>
+<button onclick="openPage('letter')">Letter</button>
+<button onclick="openPage('surprise')">Surprise</button>
+<button onclick="openPage('puzzlePage')">Puzzle</button>
+
+</div>
+
+
+<!-- IMAGES -->
+
+<div class="page" id="images">
+
+<h2>Memories</h2>
+
+<div class="gallery">
+
+<div>
+<img src="image1.jpeg">
+<p>Be happy always!</p>
+</div>
+
+<div>
+<img src="image2.jpeg">
+<p>Let this smile be your constant companion.</p>
+</div>
+
+<div>
+<img src="image3.jpeg">
+<p>I will always be here for you.</p>
+</div>
+
+<div>
+<img src="image4.jpeg">
+<p>Dont forget to smile today!</p>
+</div>
+
+</div>
+
+<button onclick="openPage('menu')">Back</button>
+
+</div>
+
+
+<!-- LETTER -->
+
+<div class="page" id="letter">
+
+<h2>A Letter For You</h2>
+
+<div class="letter">
+
+Dear You, Happy Birthday! 🎂❤️ 
+It’s funny how life brings two people together in the most unexpected ways. 
+More than four years have passed since our friendship began, 
+and even though we’ve never met in person and don’t talk every day, 
+you’ve always remained someone special to me. 
+Some friendships don’t need constant conversations to stay meaningful. 
+They quietly grow through understanding, respect, and the comfort of knowing the other person is there. 
+Thank you for every conversation, every laugh, every random moment, and for simply being yourself. 
+You may not realize it, but you’ve made my life a little brighter just by being a part of it. 
+I truly hope this year brings you endless happiness, good health, success, peace, and countless reasons to smile. 
+May every dream you hold close to your heart find its way to reality. 
+Maybe one day we’ll finally meet, laugh about all these years, and create even more beautiful memories. 
+Until then, keep being the amazing person you are. 
+Never stop smiling, never stop believing in yourself, 
+and always remember that someone out there is genuinely wishing the very best for you. 
+Once again, Happy Birthday! ❤️
+
+</div>
+
+<button onclick="openPage('menu')">Back</button>
+
+</div>
+
+
+<!-- SURPRISE -->
+
+<div class="page" id="surprise">
+
+<h2>Secret Chat</h2>
+
+<div class="chatbox">
+
+<div class="msg left">Do you remember when we first started talking?</div>
+<div class="msg right">Yeah… one random message turned into a friendship.</div>
+<div class="msg left">Still crazy we never met.</div>
+<div class="msg right">But somehow we became friends.</div>
+<div class="msg left">Distance didn't stop the friendship.</div>
+<div class="msg right">Maybe someday we'll finally meet.</div>
+
+</div>
+
+<button onclick="openPage('menu')">Back</button>
+
+</div>
+
+
+<!-- PUZZLE -->
+
+<div class="page" id="puzzlePage">
+
+<h2>Solve The Puzzle</h2>
+
+<div id="puzzle"></div>
+
+<img id="finalImage" src="image.jpeg" style="display:none;width:300px;border-radius:15px;margin-top:20px;">
+
+<button onclick="openPage('menu')">Back</button>
+
+</div>
+
+
+
+<script>
+
+/* navigation */
+
+function openPage(id){
+
+document.querySelectorAll(".page").forEach(p=>{
+p.classList.remove("active");
+});
+
+document.getElementById(id).classList.add("active");
+
+if(id==="puzzlePage"){
+createPuzzle();
+}
+
+}
+
+
+/* countdown */
+
+const birthday = new Date("August 2, 2026 00:00:00").getTime();
+
+const timer=setInterval(function(){
+
+const now=new Date().getTime();
+const distance=birthday-now;
+
+let days=Math.floor(distance/(1000*60*60*24));
+let hours=Math.floor((distance%(1000*60*60*24))/(1000*60*60));
+let minutes=Math.floor((distance%(1000*60*60))/(1000*60));
+let seconds=Math.floor((distance%(1000*60))/1000);
+
+document.getElementById("countdown").innerHTML=
+days+"d "+hours+"h "+minutes+"m "+seconds+"s ";
+
+if(distance<0){
+
+clearInterval(timer);
+
+document.getElementById("title").innerHTML="Happy Birthday 🎉";
+document.getElementById("countdown").innerHTML="Your surprise is ready!";
+
+let btn=document.getElementById("enterBtn");
+btn.disabled=false;
+btn.innerHTML="Open Your Surprise 🎁";
+
+}
+
+},1000);
+
+
+
+/* puzzle */
+
+let selectedPiece=null;
+
+function createPuzzle(){
+
+const puzzle=document.getElementById("puzzle");
+
+let order=[0,1,2,3,4,5,6,7,8];
+order.sort(()=>Math.random()-0.5);
+
+puzzle.innerHTML="";
+
+order.forEach(n=>{
+
+let piece=document.createElement("div");
+piece.className="piece";
+
+let x=(n%3)*-100;
+let y=(Math.floor(n/3))*-100;
+
+piece.style.backgroundImage="url('image.jpeg')";
+piece.style.backgroundPosition=`${x}px ${y}px`;
+
+puzzle.appendChild(piece);
+
+});
+
+}
+
+document.addEventListener("click",function(e){
+
+if(!e.target.classList.contains("piece")) return;
+
+if(!selectedPiece){
+
+selectedPiece=e.target;
+selectedPiece.style.border="3px solid yellow";
+
+}else{
+
+let temp=selectedPiece.style.backgroundPosition;
+
+selectedPiece.style.backgroundPosition=e.target.style.backgroundPosition;
+e.target.style.backgroundPosition=temp;
+
+selectedPiece.style.border="1px solid white";
+selectedPiece=null;
+
+setTimeout(checkPuzzle,50);
+
+}
+
+});
+
+
+function checkPuzzle(){
+
+const pieces=document.querySelectorAll(".piece");
+
+let solved=true;
+
+pieces.forEach((piece,index)=>{
+
+let correctX=(index%3)*-100;
+let correctY=(Math.floor(index/3))*-100;
+
+let pos=piece.style.backgroundPosition.split(" ");
+
+if(parseInt(pos[0])!==correctX || parseInt(pos[1])!==correctY){
+solved=false;
+}
+
+});
+
+if(solved){
+
+document.getElementById("finalImage").style.display="block";
+startConfetti();
+
+}
+
+}
+
+
+/* confetti */
+
+function startConfetti(){
+
+for(let i=0;i<150;i++){
+
+let conf=document.createElement("div");
+
+conf.className="confetti";
+
+conf.style.left=Math.random()*100+"vw";
+conf.style.backgroundColor=`hsl(${Math.random()*360},100%,50%)`;
+conf.style.animationDuration=(2+Math.random()*3)+"s";
+
+document.body.appendChild(conf);
+
+}
+
+}
+
+</script>
+
+</body>
+</html>
